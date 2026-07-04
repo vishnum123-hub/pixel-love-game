@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>💖 Do You Love Me? 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:#ffd6e8;
+font-family:'Press Start 2P',cursive;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+}
+
+.container{
+padding:20px;
+}
+
+h1{
+color:#ff3b7c;
+font-size:24px;
+margin-bottom:30px;
+}
+
+.gallery{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:30px;
+}
+
+.gallery img{
+width:120px;
+height:120px;
+border:5px solid white;
+box-shadow:5px 5px black;
+image-rendering:pixelated;
+object-fit:cover;
+}
+
+button{
+
+font-family:'Press Start 2P';
+font-size:15px;
+padding:18px 25px;
+margin:15px;
+cursor:pointer;
+border:none;
+box-shadow:5px 5px black;
+transition:.25s;
+
+}
+
+#yes{
+
+background:#8dff95;
+}
+
+#no{
+
+background:#ff8f8f;
+position:absolute;
+
+}
+
+.heart{
+
+position:fixed;
+font-size:25px;
+animation:float 5s linear infinite;
+
+}
+
+@keyframes float{
+
+from{
+transform:translateY(100vh);
+}
+
+to{
+transform:translateY(-120vh);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💖 DO YOU LOVE ME? 💖</h1>
+
+<div class="gallery">
+
+<img src="YOUR_PHOTO_1.jpg">
+<img src="YOUR_PHOTO_2.jpg">
+<img src="YOUR_PHOTO_3.jpg">
+
+</div>
+
+<button id="yes">YES ❤️</button>
+
+<button id="no">NO 😭</button>
+
+</div>
+
+<script>
+
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+
+const messages=[
+"No 😭",
+"Are you sure? 🤨",
+"Really?? 😭",
+"Think Again 😂",
+"Wrong Answer 😤",
+"404 No Found",
+"Bruhhh 😂",
+"Mission Failed",
+"Nice Try 😎",
+"Last Chance..."
+];
+
+let count=0;
+let yesSize=1;
+
+function moveButton(){
+
+const x=Math.random()*(window.innerWidth-150);
+const y=Math.random()*(window.innerHeight-80);
+
+no.style.left=x+"px";
+no.style.top=y+"px";
+
+no.style.transform=
+`rotate(${count*40}deg)
+ scale(${Math.max(.4,1-count*.05)})`;
+
+no.innerHTML=messages[count%messages.length];
+
+yesSize+=0.15;
+
+yes.style.transform=`scale(${yesSize})`;
+
+count++;
+
+}
+
+no.addEventListener("mouseenter",moveButton);
+
+no.addEventListener("click",moveButton);
+
+yes.addEventListener("click",()=>{
+
+document.body.innerHTML=`
+
+<div style="display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+background:#ffd6e8;
+font-family:'Press Start 2P';
+text-align:center;">
+
+<h1 style="color:#ff3b7c;">
+🎉 YAYYYYY!! 🎉
+</h1>
+
+<h2 style="font-size:18px;">
+I LOVE YOU TOO ❤️
+</h2>
+
+<p style="margin-top:30px;">
+You unlocked the Good Ending!
+</p>
+
+</div>
+
+`;
+
+});
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=
+(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},400);
+
+</script>
+
+</body>
+</html>
